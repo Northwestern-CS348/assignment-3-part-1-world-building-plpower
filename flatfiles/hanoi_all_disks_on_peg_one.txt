@@ -28,6 +28,16 @@ fact: (movable disk1 peg1 peg2)
 fact: (movable disk1 peg1 peg3)
 fact: (empty peg2)
 fact: (empty peg3)
+fact: (topdisk peg1 disk1)
+fact: (topdisk peg2 none)
+fact: (topdisk peg3 none)
+fact: (smlthan disk1 disk2)
+fact: (smlthan disk2 disk3)
+fact: (smlthan disk1 disk4)
+fact: (smlthan disk4 disk5)
 
+rule: ((smlthan ?one ?two) (smlthan ?two ?three)) -> (smlthan ?one ?three)
+rule: ((topdisk ?p ?x) (topdisk ?p2 none)) -> (movable ?x ?p ?p2)
+rule: ((topdisk ?p ?x) (topdisk ?p2 ?y) (smlthan ?x ?y)) -> (movable ?x ?p ?p2)
 
 
